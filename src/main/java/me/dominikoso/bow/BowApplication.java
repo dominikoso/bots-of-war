@@ -28,8 +28,8 @@ public class BowApplication {
 		log.info(map.toString());
 		AStarPathFinder pathFinder = new AStarPathFinder(map, 1000, false);
 		Path path = pathFinder.findPath(null,  0,  0,  6,  7);
-		log.info("Da Wae: " + map.toString(path));
-		log.info(MovesListFromPathFinder.getMovesListFromPath(path).toString());
+		log.info(map.toString(path));
+		log.info("Da Wae: " + MovesListFromPathFinder.getMovesListFromPath(path).toString());
 	}
 
 	@Bean

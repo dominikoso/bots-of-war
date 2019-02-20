@@ -51,9 +51,7 @@ public class Map implements TileBasedMap {
     }
     //endregion
 
-    public Integer getTile(int x, int y){
-        return map[x][y];
-    }
+    public Integer getTile(int x, int y){ return map[y][x]; }
 
     public String toString() {
         String str = "\n";
@@ -72,7 +70,7 @@ public class Map implements TileBasedMap {
         for(int y = 0; y < map.length; y++) {
             str += "[";
             for (int x = 0; x < map[y].length; x++) {
-                str += path.contains(x,  map.length - y - 1) ? " " : String.valueOf(getTile(y, x));
+                str += path.contains(x,  map.length - y - 1) ? " " : String.valueOf(getTile(x, y));
             }
             str += "]\n";
         }
