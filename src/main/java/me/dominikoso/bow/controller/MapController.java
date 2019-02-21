@@ -1,5 +1,6 @@
 package me.dominikoso.bow.controller;
 
+import me.dominikoso.bow.BowApplication;
 import me.dominikoso.bow.model.Entity;
 import me.dominikoso.bow.model.Map;
 import me.dominikoso.bow.tools.DataFromApiFetchManager;
@@ -46,27 +47,17 @@ public class MapController {
     //endregion
     //region getMapVisualization
     @GetMapping("/show")
-    public static String getMapVisualization(Model model){
+    public static String getMapVisualization(
+            @RequestParam(name="entities", defaultValue = "false", required = false) Boolean showEntities,
+            Model model){
         DataFromApiFetchManager api = new DataFromApiFetchManager();
-        Map map = new Map(api.getMap());
-        //region EntityPlacer
-        for (Entity entity : api.getUnitList()) {
-            Integer tileId = 6;
-            String name = entity.getName();
-            switch (name) {
-                case "WORKER":
-                    tileId = 7;
-                    break;
-                case "WARRIOR":
-                    tileId = 8;
-                    break;
-                case "ARCHER":
-                    tileId = 9;
-                    break;
-            }
-            map.map[entity.getCoordinates().getX()-1][entity.getCoordinates().getY()-1] = tileId;
+        Integer[][] rawMap = api.getMap();
+        if (showEntities) {
+            //region EntityPlacer
+            BowApplication.placeEntity(api, rawMap);
+            //endregion
         }
-        //endregion
+        Map map = new Map(rawMap);
         ArrayList<String> rows = new ArrayList<>();
         for(int y = 0; y < map.getHeightInTiles(); y++) {
             String name = "<div class=\"row\">";
