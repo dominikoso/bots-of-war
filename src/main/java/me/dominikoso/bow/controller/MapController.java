@@ -53,14 +53,18 @@ public class MapController {
         for (Entity entity : api.getUnitList()) {
             Integer tileId = 6;
             String name = entity.getName();
-            if (name == "WORKER"){
-                tileId = 7;
-            }else if(name == "WARRIOR"){
-                tileId = 8;
-            }else if(name == "ARCHER"){
-                tileId = 9;
+            switch (name) {
+                case "WORKER":
+                    tileId = 7;
+                    break;
+                case "WARRIOR":
+                    tileId = 8;
+                    break;
+                case "ARCHER":
+                    tileId = 9;
+                    break;
             }
-            map.map[entity.getCoordinates()[0]][entity.getCoordinates()[1]] = tileId;
+            map.map[entity.getCoordinates().getX()-1][entity.getCoordinates().getY()-1] = tileId;
         }
         //endregion
         ArrayList<String> rows = new ArrayList<>();

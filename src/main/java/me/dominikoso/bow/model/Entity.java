@@ -3,8 +3,33 @@ package me.dominikoso.bow.model;
 import me.dominikoso.bow.enums.TileEnum;
 
 public class Entity {
+
+    //region inner Coordinates class
+    public class Coordinates {
+        private Integer x;
+        private Integer y;
+
+        public Integer getX() {
+            return x;
+        }
+
+        public void setX(Integer x) {
+            this.x = x;
+        }
+
+        public Integer getY() {
+            return y;
+        }
+
+        public void setY(Integer y) {
+            this.y = y;
+        }
+
+    }
+    //endregion
+
     private String id;
-    private Integer[] coordinates;
+    private Coordinates coordinates;
     private String owner;
     private Integer hp;
     private String name;
@@ -22,11 +47,11 @@ public class Entity {
         this.id = id;
     }
 
-    public Integer[] getCoordinates() {
+    public Coordinates getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(Integer[] coordinates) {
+    public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 
