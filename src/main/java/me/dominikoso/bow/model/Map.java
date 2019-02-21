@@ -1,13 +1,9 @@
-package me.dominikoso.bow.map;
+package me.dominikoso.bow.model;
 
 import org.newdawn.slick.util.pathfinding.Path;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
 import org.newdawn.slick.util.pathfinding.TileBasedMap;
-import me.dominikoso.bow.map.TileEnum;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import me.dominikoso.bow.enums.TileEnum;
 
 
 public class Map implements TileBasedMap {
@@ -34,24 +30,32 @@ public class Map implements TileBasedMap {
     private TileEnum getTileType(int x, int y) {
         Integer id = getTile(x, y);
         TileEnum tileType = TileEnum.DIRT;
-        if (id == 0){
-            tileType = TileEnum.DIRT;
-        }else if (id == 1){
-            tileType = TileEnum.GRASS;
-        }else if (id == 2){
-            tileType = TileEnum.WATER;
-        }else if (id == 3){
-            tileType = TileEnum.STONE;
-        }else if (id == 4){
-            tileType = TileEnum.BASE;
-        }else if (id == 5){
-            tileType = TileEnum.MINE;
+        if (id != 0) {
+            if (id == 1){
+                tileType = TileEnum.GRASS;
+            }else if (id == 2){
+                tileType = TileEnum.WATER;
+            }else if (id == 3){
+                tileType = TileEnum.STONE;
+            }else if (id == 4){
+                tileType = TileEnum.BASE;
+            }else if (id == 5){
+                tileType = TileEnum.MINE;
+            }else if (id == 6){
+                tileType = TileEnum.HORSE;
+            }else if (id == 7) {
+                tileType = TileEnum.WORKER;
+            }else if (id == 8) {
+                tileType = TileEnum.WARRIOR;
+            }else if (id == 9) {
+                tileType = TileEnum.ARCHER;
+            }
         }
         return tileType;
     }
     //endregion
 
-    public Integer getTile(int x, int y){ return map[y][x]; }
+    private Integer getTile(int x, int y){ return map[y][x]; }
 
     public String toString() {
         String str = "\n";

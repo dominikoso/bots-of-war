@@ -1,4 +1,4 @@
-package me.dominikoso.bow.map;
+package me.dominikoso.bow.enums;
 
 public enum TileEnum {
     DIRT    (0, "dirt.png"),
@@ -6,7 +6,11 @@ public enum TileEnum {
     WATER   (2, "water.png"),
     STONE   (3, "stone.png"),
     BASE    (4, "base.png"),
-    MINE    (5, "mine.png");
+    MINE    (5, "mine.png"),
+    HORSE   (6, "horse.png"),
+    WORKER  (7, "worker.png"),
+    WARRIOR (8, "warrior.png"),
+    ARCHER  (9, "archer.png");
 
     private final Integer id;
     private final String filename;

@@ -1,7 +1,6 @@
 package me.dominikoso.bow.tools;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import me.dominikoso.bow.model.Entity;
 import org.springframework.web.client.RestTemplate;
 
 public class DataFromApiFetchManager {
@@ -16,5 +15,9 @@ public class DataFromApiFetchManager {
 
     public Integer[][] getCoordinatesList() {
         return restTemplate.getForObject(NCDC_URL + "/getCoordinatesList", Integer[][].class);
+    }
+
+    public Entity[] getUnitList() {
+        return restTemplate.getForObject(NCDC_URL + "/getUnitList", Entity[].class);
     }
 }
