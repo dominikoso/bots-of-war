@@ -34,23 +34,21 @@ public class BowApplication {
 		//endregion
 
         //region print map with coordinates from api
-        rawMap = api.getMap();
+        map = new Map(rawMap);
         for (Integer[] cords : api.getCoordinatesList()) {
-            rawMap[cords[0]-1][cords[1]-1] = 6;
+            map.map[cords[1]][cords[0]] = 6;
         }
-		map = new Map(rawMap);
 		log.info(map.toString());
 		//endregion
 
         //region print map with Entities from api
-        rawMap = api.getMap();
-        placeEntity(api, rawMap);
         map = new Map(rawMap);
+        placeEntity(api, map);
         log.info(map.toString());
         //endregion
 	}
 
-    public static void placeEntity(DataFromApiFetchManager api, Integer[][] rawMap) {
+    public static void placeEntity(DataFromApiFetchManager api, Map map) {
         for (Entity entity : api.getUnitList()) {
             Integer tileId = 6;
             String name = entity.getName();
@@ -65,7 +63,7 @@ public class BowApplication {
                     tileId = 9;
                     break;
             }
-            rawMap[entity.getCoordinates().getX()-1][entity.getCoordinates().getY()-1] = tileId;
+            map.map[entity.getCoordinates().getY()][entity.getCoordinates().getX()] = tileId;
         }
     }
 

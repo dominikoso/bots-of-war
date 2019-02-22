@@ -52,12 +52,12 @@ public class MapController {
             Model model){
         DataFromApiFetchManager api = new DataFromApiFetchManager();
         Integer[][] rawMap = api.getMap();
+        Map map = new Map(rawMap);
         if (showEntities) {
             //region EntityPlacer
-            BowApplication.placeEntity(api, rawMap);
+            BowApplication.placeEntity(api, map);
             //endregion
         }
-        Map map = new Map(rawMap);
         ArrayList<String> rows = new ArrayList<>();
         for(int y = 0; y < map.getHeightInTiles(); y++) {
             String name = "<div class=\"row\">";
