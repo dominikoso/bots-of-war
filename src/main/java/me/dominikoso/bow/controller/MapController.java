@@ -6,16 +6,16 @@ import me.dominikoso.bow.model.Map;
 import me.dominikoso.bow.tools.DataFromApiFetchManager;
 import org.newdawn.slick.util.pathfinding.AStarPathFinder;
 import org.newdawn.slick.util.pathfinding.Path;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-@Controller
+@RestController
 @RequestMapping("/map")
 public class MapController {
     //region getMapVisualizationWithPath
@@ -55,7 +55,7 @@ public class MapController {
         Map map = new Map(rawMap);
         if (showEntities) {
             //region EntityPlacer
-            BowApplication.placeEntity(api, map);
+            BowApplication.placeEntity(api.getUnitList(), map);
             //endregion
         }
         ArrayList<String> rows = new ArrayList<>();

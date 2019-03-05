@@ -1,6 +1,7 @@
 package me.dominikoso.bow;
 
 import me.dominikoso.bow.model.Entity;
+import me.dominikoso.bow.model.GameSettings;
 import me.dominikoso.bow.model.Map;
 import me.dominikoso.bow.tools.DataFromApiFetchManager;
 import me.dominikoso.bow.tools.MovesListFromPathFinder;
@@ -43,13 +44,16 @@ public class BowApplication {
 
         //region print map with Entities from api
         map = new Map(rawMap);
-        placeEntity(api, map);
+        placeEntity(api.getUnitList(), map);
         log.info(map.toString());
         //endregion
+
+        GameSettings settings = api.getGameSettings();
+        log.info(settings.toString());
 	}
 
-    public static void placeEntity(DataFromApiFetchManager api, Map map) {
-        for (Entity entity : api.getUnitList()) {
+    public static void placeEntity(Entity[] entities, Map map) {
+        for (Entity entity : entities) {
             Integer tileId = 6;
             String name = entity.getName();
             switch (name) {
@@ -71,4 +75,12 @@ public class BowApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+
+	/*
+	1. Get map from server
+	2. Transform it into TileType Array
+	3. Show map
+	4. Make types for Player1/2
+	5. Show on map
+	 */
 }

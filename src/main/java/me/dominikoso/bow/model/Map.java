@@ -81,18 +81,6 @@ public class Map implements TileBasedMap {
         return str;
     }
 
-    public String toHTML() {
-        String str = "";
-        for(int y = 0; y < map.length; y++) {
-            str += "<div class=\"row\">";
-            for (int x = 0; x < map[0].length; x++) {
-                str += getTileHTMLImageTag(x, y);
-            }
-            str += "</div>";
-        }
-        return str;
-    }
-
     @Override
     public int getWidthInTiles() {
         return map[0].length;
